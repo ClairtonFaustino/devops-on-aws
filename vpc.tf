@@ -54,3 +54,38 @@ resource "aws_route_table_association" "a" {
     subnet_id      = aws_subnet.main.id
     route_table_id = aws_route_table.main.id
 }
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+  security_group_id = aws_security_group.app_secgroup.id
+
+  cidr_ipv4   = "${chomp(data.http.my_ip.response_body)}/32"
+  from_port   = 22
+  ip_protocol = "tcp"
+  to_port     = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_http" {
+  security_group_id = aws_security_group.app_secgroup.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 80
+  ip_protocol = "tcp"
+  to_port     = 80
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+  security_group_id = aws_security_group.app_secgroup.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 443
+  ip_protocol = "tcp"
+  to_port     = 443
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_outbound" {
+  security_group_id = aws_security_group.app_secgroup.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  ip_protocol = -1
+
+}
