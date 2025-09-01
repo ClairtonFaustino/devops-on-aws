@@ -15,6 +15,6 @@ output "instance_public_dns" {
 
 output "ssh_connection" {
   description = "Comando para conectar via SSH"
-  value       = "ssh ${var.ssh_user}@${aws_instance.srv_app_prod_1.public_ip}"
+  value       = "ssh ubuntu@${aws_instance.srv_app_prod_1.public_ip}"
 }
 
