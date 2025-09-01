@@ -32,8 +32,3 @@ variable "project" {
     description = "Project name"
     type        = string
 }
-
-variable "ssh_user" {
-    description = "SSH user for EC2 instance"
-    type        = string
-}
