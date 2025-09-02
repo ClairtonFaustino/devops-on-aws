@@ -82,7 +82,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   to_port     = 443
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+resource "aws_vpc_security_group_ingress_rule" "allow_k8s_api" {
   security_group_id = aws_security_group.app_secgroup.id
 
   cidr_ipv4   = "0.0.0.0/0"
