@@ -82,6 +82,15 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   to_port     = 443
 }
 
+resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+  security_group_id = aws_security_group.app_secgroup.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 6443
+  ip_protocol = "tcp"
+  to_port     = 6443
+}
+
 resource "aws_vpc_security_group_egress_rule" "allow_all_outbound" {
   security_group_id = aws_security_group.app_secgroup.id
 
