@@ -1,5 +1,5 @@
 resource "aws_instance" "srv_app_prod_1" {
-  instance_type          = "t3.micro"
+  instance_type          = "c7i-flex.large"
   vpc_security_group_ids = [aws_security_group.app_secgroup.id]
   subnet_id              = aws_subnet.main.id
   ami                    = data.aws_ami.ubuntu.id
